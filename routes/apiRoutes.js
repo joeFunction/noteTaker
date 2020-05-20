@@ -45,6 +45,11 @@ module.exports = function (app) {
     var newId = lastNote.id+1;
     newNote.id = newId
     notes.push(newNote)
+    var newId = 1 
+    if (notes.length > 0 ){
+      newId = lastNote.id+1;
+    }
+ newNote.id = newId
     // we save the info in the db.json file
     fs.writeFile("./db/db.json", JSON.stringify(notes), function (err) {
       console.log(err)
