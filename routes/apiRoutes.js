@@ -41,21 +41,18 @@ module.exports = function (app) {
   app.post("/api/notes", function (req, res) {
     console.log("POST: ", req.body)
     var newNote = req.body
-    var lastNote = notes[notes.length-1]
-    var newId = lastNote.id+1;
+    var lastNote = notes[notes.length - 1]
+    var newId = 1
+    if (notes.length > 0) {
+      newId = lastNote.id + 1;
+    }
     newNote.id = newId
     notes.push(newNote)
-    var newId = 1 
-    if (notes.length > 0 ){
-      newId = lastNote.id+1;
-    }
- newNote.id = newId
     // we save the info in the db.json file
     fs.writeFile("./db/db.json", JSON.stringify(notes), function (err) {
       console.log(err)
       res.json("done")
     })
-
   });
 
 
@@ -73,13 +70,13 @@ module.exports = function (app) {
     notes = newNotes
 
     // we save the info in the db.json file
-    fs.writeFile("./db/db.json", JSON.stringify(notes),function(err){
+    fs.writeFile("./db/db.json", JSON.stringify(notes), function (err) {
       console.log(err)
       res.json("done")
     })
 
   });
-  
+
 
 
 };
