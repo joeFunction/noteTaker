@@ -39,7 +39,7 @@ module.exports = function (app) {
 
   // var arr = [a,b,c,d,e]  ==   length = 5
   app.post("/api/notes", function (req, res) {
-    console.log("POST: " ,req.body)
+    console.log("POST: ", req.body)
     var newNote = req.body
     var lastNote = notes[notes.length-1]
     var newId = lastNote.id+1;
@@ -57,7 +57,7 @@ module.exports = function (app) {
   app.delete("/api/notes/:id", function (req, res) {
     console.log("DELETE: ", req.params)
 
-    // array of notes and we nned to eliminata the one that the id = the id comming in the req.params
+    // array of notes and we need to eliminate the one that the id = the id comming in the req.params
     var newNotes = []
     for (var i = 0; i < notes.length; i++) {
       if (notes[i].id !== parseInt(req.params.id)) {
@@ -74,9 +74,7 @@ module.exports = function (app) {
     })
 
   });
-  // ---------------------------------------------------------------------------
-  // I added this below code so you could clear out the table while working with the functionality.
-  // Don"t worry about it!
+  
 
 
 };
